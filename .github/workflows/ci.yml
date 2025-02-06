@@ -20,7 +20,7 @@ jobs:
         dotnet-version: 8.0
 
     - name: Restore dependencies
-      run: dotnet restore --verbose detailed
+      run: dotnet restore --verbosity detailed
 
     - name: Build solution
       run: dotnet build --no-restore
