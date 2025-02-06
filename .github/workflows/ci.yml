@@ -13,17 +13,22 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Ensure full repository is fetched
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0
 
+    - name: List files (debugging)
+      run: ls -R  # Debugging step to check directory structure
+
     - name: Restore dependencies
-      run: dotnet restore --verbosity detailed
+      run: dotnet restore StudentManagement.sln
 
     - name: Build solution
-      run: dotnet build --no-restore
+      run: dotnet build StudentManagement.sln --no-restore
 
     - name: Run tests
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test StudentManagement.sln --no-build --verbosity normal
